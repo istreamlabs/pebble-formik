@@ -1,8 +1,7 @@
 import '@istreamplanet/pebble/dist/Styles/foundation.scss';
 
 import { ErrorMessage, Form, Formik } from 'formik';
-
-import { FieldText } from 'pebble-formik'
+import { FieldText, FieldTextDebounce } from 'pebble-formik'
 
 const App = () => {
   return (
@@ -31,6 +30,7 @@ const App = () => {
         {({ isSubmitting }) => (
           <Form>
             <FieldText size="large" type="email" name="email" placeholder="address" prefix="https://"/>
+            <FieldTextDebounce name="debounce" label="debounced" />
             <ErrorMessage name="email" component="div" />
             <FieldText name="password" />
             <ErrorMessage name="password" component="div" />
