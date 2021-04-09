@@ -37,8 +37,8 @@ export const generateFieldTextRenderProp = ({
   size,
   suffix,
   type,
-  width
-}: IFieldTextOptions) =>
+  width,
+}: FieldTextOptions) =>
   /**
    * Disabling the line below because of an existing bug with eslint
    * that interprets the function below as a stateless/functional component
@@ -72,7 +72,7 @@ export const generateFieldTextRenderProp = ({
       onBlur={onBlur}
       onChange={
         userOnChange
-          ? (e: React.ChangeEvent<any>) => {
+          ? (e: React.ChangeEvent<unknown>): void => {
               userOnChange(e);
               onChange(e);
             }
@@ -124,8 +124,8 @@ const FieldTextAdapter = ({
   size,
   suffix,
   type,
-  width
-}: IFieldTextOptions) => (
+  width,
+}: FieldTextOptions): JSX.Element => (
   <Field name={name} type={type}>
     {generateFieldTextRenderProp({
       autoFocus,
@@ -153,16 +153,16 @@ const FieldTextAdapter = ({
       size,
       suffix,
       type,
-      width
+      width,
     })}
   </Field>
 );
 
-interface IFieldTextOptions extends InputOptions {
+interface FieldTextOptions extends InputOptions {
   /**
    * Automatically focuses the input when true
    */
-  autoFocus?: Boolean;
+  autoFocus?: boolean;
   /**
    * Classname applied/passed to the FieldText pebble component
    */
@@ -174,7 +174,7 @@ interface IFieldTextOptions extends InputOptions {
   /**
    * The input will be disabled and not focusable when true
    */
-  disabled?: Boolean;
+  disabled?: boolean;
   /**
    * Additional hint displayed beneath the input
    */
@@ -182,7 +182,7 @@ interface IFieldTextOptions extends InputOptions {
   /**
    * Boolean flag that will hide the field's label text
    */
-  hideLabel?: Boolean;
+  hideLabel?: boolean;
   /**
    * Id prop passed to the FieldText pebble component
    */
@@ -192,11 +192,11 @@ interface IFieldTextOptions extends InputOptions {
    *
    * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/spellcheck
    */
-  ignoreSpellCheck?: Boolean;
+  ignoreSpellCheck?: boolean;
   /**
    * If the value of the input can be read, but not changed
    */
-  isReadOnly?: Boolean;
+  isReadOnly?: boolean;
   /**
    * Text that is displayed as the field's label
    */
@@ -228,7 +228,7 @@ interface IFieldTextOptions extends InputOptions {
   /**
    * If the section is required
    */
-  required?: Boolean;
+  required?: boolean;
   /**
    * Changes the size of the input, giving it more or less padding and font size
    */

@@ -44,7 +44,7 @@ const validDimensionsList = [
   '75',
   '80',
   '90',
-  '100'
+  '100',
 ];
 
 export type ValidDimensions = typeof validDimensionsList[number];
@@ -76,7 +76,7 @@ export interface InputOptions {
    * Relates to the multiple HTML5 attribute for inputs
    * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes
    */
-  multiple?: Boolean;
+  multiple?: boolean;
   /**
    * Relates to the pattern HTML5 attribute for inputs
    * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes

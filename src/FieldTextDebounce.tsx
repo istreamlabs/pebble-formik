@@ -17,7 +17,15 @@ import { isTouched } from './Utils';
  * @param {Function} param.setFieldValue - Formik form method that imperatively sets the field value
  * @returns {Function} - The onChange handler passed to the FieldDateTime pebble component
  */
-export const generateOnDebounceHandler = ({ name, setFieldValue, onDebounce }: { name: string; setFieldValue: Function; onDebounce?: Function }) => (value: any) => {
+export const generateOnDebounceHandler = ({
+  name,
+  setFieldValue,
+  onDebounce,
+}: {
+  name: string;
+  setFieldValue: Function;
+  onDebounce?: Function;
+}) => (value: unknown): void => {
   setFieldValue(name, value);
   if (onDebounce) {
     onDebounce(value);
@@ -58,7 +66,7 @@ export const generateFieldTextDebounceRenderProp = ({
   suffix,
   type,
   width,
-}: IFieldTextDebounceOptions) => (
+}: FieldTextDebounceOptions) =>
   /**
    * Disabling the line below because of an existing bug with eslint
    * that interprets the function below as a stateless/functional component
@@ -77,7 +85,9 @@ export const generateFieldTextDebounceRenderProp = ({
       hideLabel={hideLabel}
       id={id}
       ignoreSpellCheck={ignoreSpellCheck}
-      isInvalid={!!((isTouched(touched, name) || submitCount > 0) && errors[name])}
+      isInvalid={
+        !!((isTouched(touched, name) || submitCount > 0) && errors[name])
+      }
       isReadOnly={isReadOnly}
       label={label}
       max={max}
@@ -88,7 +98,11 @@ export const generateFieldTextDebounceRenderProp = ({
       multiple={multiple}
       name={name}
       onBlur={onBlur}
-      onDebounce={generateOnDebounceHandler({ name, setFieldValue, onDebounce })}
+      onDebounce={generateOnDebounceHandler({
+        name,
+        setFieldValue,
+        onDebounce,
+      })}
       onFocus={onFocus}
       pattern={pattern}
       placeholder={placeholder}
@@ -101,8 +115,7 @@ export const generateFieldTextDebounceRenderProp = ({
       value={value}
       width={width}
     />
-  ));
-
+  );
 
 const FieldTextDebounceAdapter = ({
   autoFocus,
@@ -132,7 +145,7 @@ const FieldTextDebounceAdapter = ({
   suffix,
   type,
   width,
-}: IFieldTextDebounceOptions) => (
+}: FieldTextDebounceOptions): JSX.Element => (
   <Field name={name} type={type}>
     {generateFieldTextDebounceRenderProp({
       autoFocus,
@@ -166,11 +179,11 @@ const FieldTextDebounceAdapter = ({
   </Field>
 );
 
-interface IFieldTextDebounceOptions extends InputOptions {
+interface FieldTextDebounceOptions extends InputOptions {
   /**
    * Automatically focuses the input when true
    */
-  autoFocus?: Boolean;
+  autoFocus?: boolean;
   /**
    * Class name applied/passed to the FieldTextDebounce pebble component
    */
@@ -182,7 +195,7 @@ interface IFieldTextDebounceOptions extends InputOptions {
   /**
    * The input will be disabled and not focusable when true
    */
-  disabled?: Boolean;
+  disabled?: boolean;
   /**
    * Additional hint displayed beneath the input
    */
@@ -190,7 +203,7 @@ interface IFieldTextDebounceOptions extends InputOptions {
   /**
    * Boolean flag that will hide the field's label text
    */
-  hideLabel?: Boolean;
+  hideLabel?: boolean;
   /**
    * Id prop passed to the FieldTextDebounce pebble component
    */
@@ -200,12 +213,12 @@ interface IFieldTextDebounceOptions extends InputOptions {
    *
    * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/spellcheck
    */
-  ignoreSpellCheck?: Boolean;
+  ignoreSpellCheck?: boolean;
   /**
    * If the value of the input can be read, but not changed
    */
-  isReadOnly?: Boolean;
-  isValid?: Boolean;
+  isReadOnly?: boolean;
+  isValid?: boolean;
   /**
    * Text that is displayed as the field's label
    */
@@ -241,7 +254,7 @@ interface IFieldTextDebounceOptions extends InputOptions {
   /**
    * If the section is required
    */
-  required?: Boolean;
+  required?: boolean;
   /**
    * Changes the size of the input, giving it more or less padding and font size
    */
@@ -266,8 +279,8 @@ interface IFieldTextDebounceOptions extends InputOptions {
    *
    * For responsive behavior, pass an array with length up to 4, with one of the above values.
    */
-  width?: DimensionType,
-};
+  width?: DimensionType;
+}
 
 // Appending display name attribute to conform to the desired name
 // otherwise tests will reference this component as FieldTextDebounceAdapter

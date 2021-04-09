@@ -3,3 +3,7 @@ dist/
 node_modules/
 .snapshots/
 *.min.js
+*.test.tsx
+*.test.ts
+*.test.jsx
+*.test.js

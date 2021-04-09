@@ -1,1 +1,1 @@
-declare module '@istreamplanet/pebble'
+declare module '@istreamplanet/pebble';

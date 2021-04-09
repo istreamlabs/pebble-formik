@@ -1,4 +1,4 @@
-export function isTouched(touchedFields = {}, field = ''): Boolean {
+export function isTouched(touchedFields = {}, field = ''): boolean {
   const parts = field.split('.');
   if (parts.length > 1) {
     const top = field.slice(0, field.indexOf('.'));
@@ -14,7 +14,8 @@ export function isTouched(touchedFields = {}, field = ''): Boolean {
  * @param {string} path
  * @param {string} separator
  */
-export function getNestedValue(obj: any, path: string, separator: string) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function getNestedValue(obj: any, path: string, separator: string): any {
   try {
     separator = separator || '.';
 
