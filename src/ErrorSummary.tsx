@@ -42,17 +42,17 @@ const ErrorSummary = ({
       border={{ side: 'all', color: 'red-light' }}
     >
       {submitError && (
-        <>
+        <React.Fragment>
           <Heading element="4" size="5" className="mb-2">
             {submitError.errorMessage || ''}
           </Heading>
           <p className={extraPadding}>
             request id: <code>{submitError.requestID}</code>
           </p>
-        </>
+        </React.Fragment>
       )}
       {errorItems.length > 0 && (
-        <>
+        <React.Fragment>
           <Heading element="4" size="5" className="mb-2">
             Validation Errors
           </Heading>
@@ -63,7 +63,7 @@ const ErrorSummary = ({
               </ListItem>
             ))}
           </List>
-        </>
+        </React.Fragment>
       )}
     </Block>
   );

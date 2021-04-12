@@ -71,7 +71,9 @@ interface FormGroupOptions {
  * @param {string|Array} validationErrors - The validation errors prop as an array if multiple and string if single
  * @returns {object|null} - The relevant markup displaying validation errors if they exist, null otherwise
  */
-export function generateValidationMarkup(validationErrors): JSX.Element | null {
+export function generateValidationMarkup(
+  validationErrors: string | string[] | undefined,
+): JSX.Element | null {
   if (typeof validationErrors === 'string') {
     return (
       <Text appearance="danger" className="field-text-validation pt-2" size="6">
@@ -126,10 +128,10 @@ function FormGroup({
         {description && <Text size="6">{description}</Text>}
       </TextContainer>
     ) : (
-      <>
+      <React.Fragment>
         {title}
         {description && <Text size="6">{description}</Text>}
-      </>
+      </React.Fragment>
     );
 
   const validationTextMarkup = generateValidationMarkup(validationErrors);
@@ -138,7 +140,9 @@ function FormGroup({
   return (
     <ConditionalWrapper
       condition={collapsible}
-      wrapper={(children): JSX.Element => (
+      wrapper={(
+        children: JSX.Element | JSX.Element[] | string,
+      ): JSX.Element => (
         <CollapsiblePanel
           onToggle={togglePanel}
           open={isOpen}
