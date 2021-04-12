@@ -31,12 +31,12 @@
     "react": "^16.0.0",
     "@istreamplanet/pebble": "^2.6.0",
     "formik": "^2.2.6",
-    "node-sass": "^5.0.0",
+    "node-sass": "^4.0.0",
     "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
     "@istreamplanet/pebble": "^2.6.0",
-    "node-sass": "^5.0.0",
+    "node-sass": "^4.0.0",
     "formik": "^2.2.6",
     "react-router-dom": "^5.2.0",
     "@testing-library/jest-dom": "^4.2.4",
