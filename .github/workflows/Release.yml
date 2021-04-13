@@ -1,0 +1,41 @@
+name: Release a new version
+on:
+  push:
+    tags: 'v*'
+jobs:
+   deploy:
+    name: deploy
+    runs-on: ubuntu-latest
+    env:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+    steps:
+      - name: Get the code
+        uses: actions/checkout@v2
+      - name: Install NodeJS
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.15.5'
+      - name: Cache npm modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-node-
+      - name: Install npm modules
+        run: npm ci
+      - name: Publish to NPM
+        run: |
+          npm config set //registry.npmjs.org/:_authToken=$NPM_TOKEN
+          npm publish --tag next
+      - name: Calculate version
+        id: get_version
+        run: |
+          echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+          echo ::set-output name=VERSION_WITHOUT_V::${GITHUB_REF/refs\/tags\/v/}
+      - name: Notify Slack
+        uses: pullreminders/slack-action@master
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        with:
+          args: '{\"channel\":\"CQ9AG10AC\",\"text\":\":rocket: ${{ steps.get_version.outputs.VERSION }} of Pebble-Formik has been released!\nSee it on <https://www.npmjs.com/package/@istreamplanet/pebble-formik/v/${{ steps.get_version.outputs.VERSION_WITHOUT_V }}|NPM>\"}'
