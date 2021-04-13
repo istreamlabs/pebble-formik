@@ -1,5 +1,5 @@
 {
-  "name": "pebble-formik",
+  "name": "@istreamplanet/pebble-formik",
   "version": "1.1.0-alpha.0",
   "description": "Adapts the Pebble Design System to Formik Controls",
   "private": false,
