@@ -1,0 +1,71 @@
+name: Build
+on:
+  push:
+    branches: [main]
+jobs:
+  lint:
+    name: lint
+    runs-on: ubuntu-latest
+    env:
+      CI: true
+    steps:
+      - name: Get the code
+        uses: actions/checkout@v2
+      - name: Install NodeJS
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.15.5'
+      - name: Cache npm modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-node-
+      - name: Install npm modules
+        run: npm ci
+      - run: npm run test:lint
+  unit-test:
+    name: unit test
+    runs-on: ubuntu-latest
+    env:
+      CI: true
+    steps:
+      - name: Get the code
+        uses: actions/checkout@v2
+      - name: Install NodeJS
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.15.5'
+      - name: Cache npm modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-node-
+      - name: Install npm modules
+        run: npm ci
+      - run: npm run test:unit
+  build:
+    name: Build & Bundle
+    runs-on: ubuntu-latest
+    env:
+      CI: true
+    steps:
+      - name: Get the code
+        uses: actions/checkout@v2
+      - name: Install NodeJS
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.15.5'
+      - name: Cache npm modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-node-
+      - name: Install npm modules
+        run: npm ci
+      - run: npm run test:build
