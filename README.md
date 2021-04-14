@@ -7,13 +7,13 @@
 For yarn users:
 
 ```shell
-$ yarn add @istreamplanet/pebble-formik @istreamplanet/pebble node-sass react-router-dom
+yarn add @istreamplanet/pebble-formik @istreamplanet/pebble node-sass react-router-dom
 ```
 
 For npm users:
 
 ```shell
-npm install @istreamplanet/pebble-formik @istreamplanet/pebble @istreamplanet/pebble node-sass react-router-dom --save
+npm install @istreamplanet/pebble-formik formik @istreamplanet/pebble node-sass react-router-dom --save
 ```
 
 Include the Pebble foundation stylesheet in your layout template.
