@@ -11,7 +11,6 @@ import React from 'react';
 import { render } from '@testing-library/react';
 
 jest.mock('formik');
-jest.mock()
 
 describe('FormCard', () => {
   describe('generateHandleSubmit', () => {
