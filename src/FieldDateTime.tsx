@@ -208,7 +208,7 @@ interface FieldDateTimeAdapterOptions extends InputOptions {
    * Filter the selectable dates based on custom criteria
    *
    * @param {string} date - a UTC ISO 8601 string ref: https://en.wikipedia.org/wiki/ISO_8601
-   * @returns {boolean} - Flag that determines if the date is selectable by the user
+   * @returns {Function} - Flag that determines if the date is selectable by the user
    */
   filterDate?: Function;
   /**
@@ -288,11 +288,6 @@ interface FieldDateTimeAdapterOptions extends InputOptions {
   /**
    * A valid css width (%, px, em, rem).
    *
-   * Or one of:
-   *
-   * 1, 2, 3, 4, 5, 6, 7, 8, 9, '1', '2', '3', '4', '5', '6', '7',
-   * '8', '9', 10, 20, 25, 30, 33, 34, 40, 50, 60, 70, 75, 80, 90, 100, '10',
-   * '20', '25', '30', '33', '34', '40', '50', '60', '70', '75', '80', '90', '100'
    *
    * For responsive behavior, pass an array with length up to 4, with one of the above values.
    */
