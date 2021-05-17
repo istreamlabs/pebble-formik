@@ -111,7 +111,7 @@ export const generateFieldDateTimeRenderProp = ({
  * @description This component serves as an adapter between the Formik Field component and
  * the underlying pebble FieldDateTime component
  *
- * ref: https://pebble.istreamplanet.net/#/Components/FieldDateTime
+ * @see https://pebble.istreamplanet.net/#/Components/FieldDateTime
  */
 const FieldDateTimeAdapter = ({
   autoFocus,
