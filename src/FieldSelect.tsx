@@ -114,7 +114,7 @@ export const generateFieldSelectRenderProp = ({
  * @description Adapter component that connects the Formik Field component with
  * the pebble FieldSelect component
  *
- * FieldSelect ref: https://pebble.istreamplanet.net/#/Components/FieldSelect
+ * @see https://pebble.istreamplanet.net/#/Components/FieldSelect
  */
 const FieldSelectAdapter = ({
   ariaLabel,
