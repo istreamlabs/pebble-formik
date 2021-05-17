@@ -219,7 +219,7 @@ interface FieldNumberAdapterOptions extends InputOptions {
   /**
    * The current field value for the input
    */
-  value?: string;
+  value: string;
   /**
    * A valid css width (%, px, em, rem).
    *
