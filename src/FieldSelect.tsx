@@ -264,7 +264,7 @@ interface FieldSelectAdapterOptions extends InputOptions {
   /**
    * The reference to the field name that exists in Formik state
    */
-  name?: string;
+  name: string;
   /**
    * Text to display when there are no options
    */
