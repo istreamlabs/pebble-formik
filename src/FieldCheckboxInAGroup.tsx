@@ -77,7 +77,7 @@ export const generateFieldCheckboxRenderProp = ({
 
 /**
  * @description Adapter component that connects the Formik Field component with the pebble FieldCheckbox component
- * FieldCheckbox ref: https://pebble.istreamplanet.net/#/Components/FieldCheckbox
+ * @see https://pebble.istreamplanet.net/#/Components/FieldCheckbox
  */
 const FieldCheckboxInAGroup = ({
   className,
