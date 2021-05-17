@@ -164,6 +164,5 @@ interface FieldCheckboxInAGroupOptions extends InputOptions {
   value?: string;
 }
 
-FieldCheckboxInAGroup.displayName = 'FieldCheckboxInAGroup';
 
 export default FieldCheckboxInAGroup;
