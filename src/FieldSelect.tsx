@@ -187,7 +187,7 @@ interface FieldSelectAdapterOptions extends InputOptions {
   /**
    * The id attribute of the FieldSelect's container
    */
-  id: string;
+  id?: string;
   /**
    * The label for the checkbox
    */
