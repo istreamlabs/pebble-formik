@@ -164,5 +164,4 @@ interface FieldCheckboxInAGroupOptions extends InputOptions {
   value?: string;
 }
 
-
 export default FieldCheckboxInAGroup;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { shallow } from 'enzyme';
+import { Formik } from 'formik';
 import { FieldSelect } from '@istreamplanet/pebble';
 import FieldSelectAdapter, { generateFieldSelectRenderProp, generateOnChangeHandler } from './FieldSelect';
 
@@ -9,7 +9,7 @@ jest.mock('@istreamplanet/pebble');
 describe('FieldSelect', () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    FieldSelect.mockReturnValue(<div />);
+    FieldSelect.mockReturnValue(<div>FieldSelect</div>);
   });
 
   describe('FieldSelectAdapter', () => {
@@ -56,8 +56,17 @@ describe('FieldSelect', () => {
     });
 
     it('renders without crashing', () => {
-      const wrapper = shallow(<FieldSelectAdapter {...props} />);
-      expect(wrapper).toHaveLength(1);
+      const { getByText } = render(
+        <FieldSelectAdapter {...props} />,
+        {
+          wrapper: ({children}) => (
+            <Formik>
+              {children}
+            </Formik>
+          )
+        }
+      );
+      expect(getByText('FieldSelect')).toBeInTheDocument();
     });
 
     it('passes props as expected', () => {
