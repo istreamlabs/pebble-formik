@@ -95,12 +95,12 @@ describe('FieldCheckboxInAGroup', () => {
 
     it('will deselect value properly', () => {
       field = { value: [value] };
-      generateFieldOnChangeHandler(name, field, value, form)();
+      generateFieldOnChangeHandler({name, field, value, form})();
       expect(form.setFieldValue).toHaveBeenCalledWith(name, []);
     });
 
     it('will select value properly', () => {
-      generateFieldOnChangeHandler(name, field, value, form)();
+      generateFieldOnChangeHandler({name, field, value, form})();
       expect(form.setFieldValue).toHaveBeenCalledWith(name, [value]);
     });
   });
