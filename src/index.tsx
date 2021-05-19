@@ -1,8 +1,13 @@
 export { default as ErrorMessage } from './ErrorMessage';
 export { default as ErrorSummary } from './ErrorSummary';
 export { default as FieldCheckbox } from './FieldCheckbox';
+export { default as FieldCheckboxInAGroup } from './FieldCheckboxInAGroup';
+export { default as FieldDateTime } from './FieldDateTime';
+export { default as FieldNumber } from './FieldNumber';
+export { default as FieldRadioGroup } from './FieldRadioGroup';
+export { default as FieldSelect } from './FieldSelect';
 export { default as FieldText } from './FieldText';
 export { default as FieldTextDebounce } from './FieldTextDebounce';
+export { default as FieldToggle } from './FieldToggle';
 export { default as FormCard } from './FormCard';
 export { default as FormGroup } from './FormGroup';
-export { default as FieldToggle } from './FieldToggle';
