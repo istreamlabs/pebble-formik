@@ -1,6 +1,6 @@
 import { Field, FieldProps } from 'formik';
 import { FieldNumber } from '@istreamplanet/pebble';
-import { dimensionType, InputOptions } from './types';
+import { DimensionType, InputOptions } from './types';
 import React from 'react';
 import { isTouched } from './Utils';
 
@@ -37,6 +37,7 @@ export const generateFieldNumberRenderProp = ({
   id,
   isReadOnly,
   label,
+  name,
   onFocus,
   placeholder,
   prefix,
@@ -54,7 +55,7 @@ export const generateFieldNumberRenderProp = ({
    */
 
   // eslint-disable-next-line
-  ({ field: { onBlur, onChange, name }, form: { errors, touched, submitCount = 0 } }: FieldProps) => (
+  ({ field: { onBlur, onChange }, form: { errors, touched, submitCount = 0 } }: FieldProps) => (
     <FieldNumber
       autoFocus={autoFocus}
       className={className}
@@ -119,6 +120,7 @@ const FieldNumberAdapter = ({
       id,
       isReadOnly,
       label,
+      name,
       onFocus,
       placeholder,
       prefix,
@@ -148,9 +150,9 @@ interface FieldNumberAdapterOptions extends InputOptions {
    */
   disabled?: boolean;
   /**
-   * Map of the existing errors in the Formik form state
+   * Additional hint displayed beneath the input
    */
-  errors?: object;
+  helpText?: string;
   /**
    * Boolean flag that will hide the field's label text
    */
@@ -171,26 +173,6 @@ interface FieldNumberAdapterOptions extends InputOptions {
    * The reference to the field name that exists in Formik state
    */
   name: string;
-  /**
-   * Map of the existing touched fields in the Formik form state
-   */
-  touched?: object;
-  /**
-   * The input type that follows the HTML5 standard (i.e. text, number, email, password)
-   */
-  type?: string;
-  /**
-   * Additional hint displayed beneath the input
-   */
-  helpText?: string;
-  /**
-   * Callback provided by Formik Field render props to fire when input is blurred
-   */
-  onBlur?: Function;
-  /**
-   * Callback provided by Formik Field render props to fire when input is changed
-   */
-  onChange?: Function;
   /**
    * Callback function called when input is focused
    */
@@ -217,9 +199,9 @@ interface FieldNumberAdapterOptions extends InputOptions {
    */
   suffix?: string | JSX.Element;
   /**
-   * The current field value for the input
+   * The input type that follows the HTML5 standard (i.e. text, number, email, password)
    */
-  value: string;
+  type?: string;
   /**
    * A valid css width (%, px, em, rem).
    *
@@ -227,7 +209,7 @@ interface FieldNumberAdapterOptions extends InputOptions {
    *
    * For responsive behavior, pass an array with length up to 4, with one of the above values.
    */
-  width?: dimensionType;
+  width?: DimensionType;
 }
 
 // Appending display name attribute to conform to the desired name

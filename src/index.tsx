@@ -11,3 +11,5 @@ export { default as FieldTextDebounce } from './FieldTextDebounce';
 export { default as FieldToggle } from './FieldToggle';
 export { default as FormCard } from './FormCard';
 export { default as FormGroup } from './FormGroup';
+export { getNestedValue } from './Utils';
+export { isTouched } from './Utils';

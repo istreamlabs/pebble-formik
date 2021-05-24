@@ -1,7 +1,7 @@
 import { Field, FieldProps } from 'formik';
 import { FieldDateTime } from '@istreamplanet/pebble';
 import React from 'react';
-import { InputOptions, dimensionType } from './types';
+import { InputOptions, DimensionType } from './types';
 import { isTouched } from './Utils';
 
 /**
@@ -291,7 +291,7 @@ interface FieldDateTimeAdapterOptions extends InputOptions {
    *
    * For responsive behavior, pass an array with length up to 4, with one of the above values.
    */
-  width?: dimensionType;
+  width?: DimensionType;
   /**
    * The input type that follows the HTML5 standard (i.e. text, number, email, password etc)
    */

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Field, FieldProps } from 'formik';
 import { FieldRadioGroup } from '@istreamplanet/pebble';
+import { InputOptions } from './types';
 
 /**
  * @description Higher order function that provides a closure for the FieldRadioGroup onChange handler
@@ -25,9 +26,12 @@ export const generateOnChangeHandler = ({
  * @description Render prop generator function consumed and invoked within FieldRadioGroupAdapter
  */
 export const generateFieldRadioGroupRenderProp = ({
+  className,
+  helpText,
   name,
   radios,
-  ...FieldRadioGroupProps
+  required,
+  title,
 }: FieldRadioGroupAdapterOptions) =>
   // Disabling the line below because of an existing bug with eslint
   // that interprets the function below as a stateless/functional component
@@ -37,10 +41,13 @@ export const generateFieldRadioGroupRenderProp = ({
   // eslint-disable-next-line
   ({ field: { value }, form: { setFieldValue } }: FieldProps) => (
     <FieldRadioGroup
-      {...FieldRadioGroupProps}
+      className={className}
+      helpText={helpText}
       name={name}
       onChange={generateOnChangeHandler({ name, setFieldValue })}
       radios={radios}
+      required={required}
+      title={title}
       value={value}
     />
   );
@@ -50,25 +57,35 @@ export const generateFieldRadioGroupRenderProp = ({
  * pebble FieldRadioGroup component ref: https://pebble.istreamplanet.net/#/Components/FieldRadioGroup
  */
 const FieldRadioGroupAdapter = ({
+  className,
+  helpText,
   name,
   radios,
+  required,
+  title,
   type,
-  ...FieldRadioGroupProps
 }: FieldRadioGroupAdapterOptions): JSX.Element => (
   <Field name={name} type={type}>
     {generateFieldRadioGroupRenderProp({
-      ...FieldRadioGroupProps,
+      className,
+      helpText,
       name,
       radios,
+      required,
+      title,
     })}
   </Field>
 );
 
 interface FieldRadioGroupAdapterOptions extends InputOptions {
   /**
-   * Any additional props not listed below are passed directly to Pebble's FieldRadioGroup
+   * Additional classes to add
    */
-  FieldRadioGroup: InferProps<typeof FieldRadioGroup.propTypes>;
+  className?: string;
+  /**
+   * Additional hint displayed beneath the label
+   */
+  helpText?: string;
   /**
    * Name attribute applied to all radios
    */
@@ -88,7 +105,15 @@ interface FieldRadioGroupAdapterOptions extends InputOptions {
   /**
    * The input type that follows the HTML5 standard (i.e. text, number, email, password)
    */
-  type: string;
+  type?: string;
+  /**
+   * If at least one option must be selected
+   */
+  required?: boolean;
+  /**
+   * The label for the group of radios
+   */
+  title: string;
 }
 
 FieldRadioGroupAdapter.displayName = 'FieldRadioGroup';

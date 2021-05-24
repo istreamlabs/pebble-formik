@@ -1,6 +1,7 @@
 import { Field, FieldProps } from 'formik';
 import { FieldCheckbox } from '@istreamplanet/pebble';
 import React from 'react';
+import { InputOptions } from './types';
 import { isTouched } from './Utils';
 
 /**
@@ -21,9 +22,12 @@ export const generateFieldOnChangeHandler = ({
   groupName,
 }: {
   name: string;
-  field: object;
+  field: { value: string[] };
   value: string;
-  form: object;
+  form: {
+    setFieldValue: Function;
+    setFieldTouched: Function;
+  };
   groupName: string;
 }) => (): void => {
   if (field.value.includes(value)) {
@@ -64,10 +68,10 @@ export const generateFieldCheckboxRenderProp = ({
       disabled={disabled}
       helpText={helpText}
       id={id}
-      isInvalid={!!(((isTouched(form.touched, name) || form.submitCount > 0) && form.errors[name]) || (form.errors[groupName] && (isTouched(form.touched, groupName) || form.submitCount > 0)))}
+      isInvalid={Boolean(((isTouched(form.touched, name) || form.submitCount > 0) && form.errors[name]) || (form.errors[groupName] && (isTouched(form.touched, groupName) || form.submitCount > 0)))}
       isSelected={field.value.includes(value)}
       label={label}
-      onChange={generateFieldOnChangeHandler(name, field, value, form, groupName)}
+      onChange={generateFieldOnChangeHandler({ name, field, value, form, groupName })}
       required={required}
       toggle={toggle}
       validationText={((isTouched(form.touched, name) || form.submitCount > 0) && form.errors[name]) ? form.errors[name] : null}
@@ -118,29 +122,25 @@ interface FieldCheckboxInAGroupOptions extends InputOptions {
    */
   disabled?: boolean;
   /**
-   * The formik field render prop ref: https://jaredpalmer.com/formik/docs/api/field
+   * Name that serves as a group id to identify to which group a checkbox belongs
    */
-  field?: object;
-  /**
-   * The formik form render prop ref: https://jaredpalmer.com/formik/docs/api/field
-   */
-  form?: object;
+  groupName: string;
   /**
    * Additional hint displayed beneath the label
    */
   helpText?: string;
   /**
-   * Name that serves as a group id to identify to which group a checkbox belongs
-   */
-  groupName?: string;
-  /**
    * Id prop passed to the FieldCheckbox pebble component
    */
-  id?: string;
+  id: string;
   /**
    * The label for the checkbox
    */
   label?: string;
+  /**
+   * The reference to the field name that exists in Formik state
+   */
+  name: string;
   /**
    * If the selection is required
    */
@@ -155,13 +155,9 @@ interface FieldCheckboxInAGroupOptions extends InputOptions {
    */
   type?: string;
   /**
-   * The reference to the field name that exists in Formik state
-   */
-  name?: string;
-  /**
    * The current field value associated with the checkbox
    */
-  value?: string;
+  value: string;
 }
 
 export default FieldCheckboxInAGroup;

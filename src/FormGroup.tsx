@@ -102,7 +102,7 @@ export function generateValidationMarkup(
 /**
  * @description Layout component that provides descriptive markup and/or validation messaging around enclosed form fields
  */
-function FormGroup({
+export default function FormGroup({
   background = 'white',
   bottomBorder = true,
   childDirection = 'column',
@@ -194,5 +194,3 @@ function FormGroup({
     </ConditionalWrapper>
   );
 }
-
-export default FormGroup;
