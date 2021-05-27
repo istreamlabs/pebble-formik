@@ -7,10 +7,10 @@ import {
   Form,
   Icon,
 } from '@istreamplanet/pebble';
-import { Formik, FormikErrors, FormikValues } from 'formik';
+import { Formik, FormikErrors, FormikHelpers, FormikValues } from 'formik';
+import { Prompt, RouteComponentProps, withRouter } from 'react-router-dom';
 
 import ErrorSummary from './ErrorSummary';
-import { Prompt, RouteComponentProps, withRouter } from 'react-router-dom';
 import React from 'react';
 import classNames from 'classnames';
 
@@ -44,9 +44,13 @@ export const generateHandleSubmit = ({
   setInitValue?: Function;
   successCallback: Function;
   successTimeout: number;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
 }): any => {
   let timeoutHandle: NodeJS.Timeout;
-  return async (values: any, actions: any): Promise<any> => {
+  return async (
+    values: FormikValues,
+    formikHelpers: FormikHelpers<FormikValues>,
+  ): Promise<void> => {
     if (timeoutHandle) {
       clearTimeout(timeoutHandle);
     }
@@ -55,9 +59,9 @@ export const generateHandleSubmit = ({
       const result = await onSubmit({ values, initialValues });
       if (setInitValue) {
         setInitValue(result);
-        actions.setStatus({ result, success: true });
+        formikHelpers.setStatus({ result, success: true });
       } else {
-        actions.resetForm({
+        formikHelpers.resetForm({
           values: result,
           status: {
             result,
@@ -67,21 +71,21 @@ export const generateHandleSubmit = ({
       }
       if (successTimeout) {
         timeoutHandle = setTimeout(() => {
-          actions.setStatus(initialStatus);
+          formikHelpers.setStatus(initialStatus);
         }, successTimeout);
       }
-      successCallback({ result, values, actions });
+      successCallback({ result, values, actions: formikHelpers });
     } catch (error) {
-      actions.setStatus({ error });
+      formikHelpers.setStatus({ error });
       if (errorTimeout) {
         timeoutHandle = setTimeout(() => {
-          actions.setStatus(initialStatus);
+          formikHelpers.setStatus(initialStatus);
         }, errorTimeout);
       }
       if (error?.params) {
-        actions.setErrors(error.params);
+        formikHelpers.setErrors(error.params);
       }
-      errorCallback({ error, values, actions });
+      errorCallback({ error, values, actions: formikHelpers });
     }
   };
 };
@@ -195,7 +199,7 @@ export const generateFormRenderProp = ({
   sectioned?: boolean;
   submitContent?: JSX.Element | JSX.Element[] | string;
   submitSuccessMessage?: string;
-}) => (formik: FormikValues): JSX.Element => {
+}): Function => (formik: FormikValues): JSX.Element => {
   const { dirty, handleReset, handleSubmit, isSubmitting } = formik;
   return (
     <Form onSubmit={handleSubmit} onReset={handleReset}>
