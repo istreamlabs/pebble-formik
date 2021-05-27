@@ -1,5 +1,6 @@
 name: Build
 on:
+  pull_request:
   push:
     branches: [main]
 jobs:
@@ -68,4 +69,4 @@ jobs:
             ${{ runner.OS }}-node-
       - name: Install npm modules
         run: npm ci
-      - run: npm run test:build
+      - run: npm run build
