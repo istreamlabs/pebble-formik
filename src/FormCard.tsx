@@ -8,10 +8,9 @@ import {
   Icon,
 } from '@istreamplanet/pebble';
 import { Formik, FormikErrors, FormikValues } from 'formik';
-import { RouteComponentProps, withRouter } from 'react-router';
 
 import ErrorSummary from './ErrorSummary';
-import { Prompt } from 'react-router-dom';
+import { Prompt, RouteComponentProps, withRouter } from 'react-router-dom';
 import React from 'react';
 import classNames from 'classnames';
 
