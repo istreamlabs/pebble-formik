@@ -442,5 +442,5 @@ interface TestableFormCardAdapterOptions extends RouteComponentProps {
 TestableFormCardAdapter.displayName = 'FormCard';
 
 const FormCardWithRouter = withRouter(TestableFormCardAdapter);
-FormCardWithRouter.displayName = 'FormCardWithRouter';
+
 export default FormCardWithRouter;
