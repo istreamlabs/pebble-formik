@@ -194,3 +194,5 @@ export default function FormGroup({
     </ConditionalWrapper>
   );
 }
+
+FormGroup.displayName = 'FormGroup';
