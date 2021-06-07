@@ -102,7 +102,7 @@ export function generateValidationMarkup(
 /**
  * @description Layout component that provides descriptive markup and/or validation messaging around enclosed form fields
  */
-export default function FormGroup({
+const FormGroup = ({
   background = 'white',
   bottomBorder = true,
   childDirection = 'column',
@@ -115,7 +115,7 @@ export default function FormGroup({
   padding = 5,
   title,
   validationErrors,
-}: FormGroupOptions): JSX.Element {
+}: FormGroupOptions): JSX.Element => {
   const [isOpen, setIsOpen] = useState(true);
   const togglePanel = (): void => setIsOpen(!isOpen);
 
@@ -193,6 +193,8 @@ export default function FormGroup({
       </Block>
     </ConditionalWrapper>
   );
-}
+};
 
 FormGroup.displayName = 'FormGroup';
+
+export default FormGroup;
