@@ -173,7 +173,7 @@ describe('FormCard', () => {
       );
       expect(getByText('Success')).toBeInTheDocument();
       expect(getByText('Reset').closest('button')).toBeDisabled();
-      expect(getByText('Submit')).toBeInTheDocument();
+      expect(getByText('Submit').closest('button')).toBeDisabled();
     });
 
     it('shows submit error if there is one', () => {

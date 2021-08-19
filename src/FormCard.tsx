@@ -163,7 +163,12 @@ export const defaultFooterRenderProp = ({
       <Button type="reset" disabled={!dirty || isSubmitting} onClick={onReset}>
         {resetContent}
       </Button>
-      <Button type="submit" loading={isSubmitting} primary>
+      <Button
+        type="submit"
+        disabled={!dirty || isSubmitting}
+        loading={isSubmitting}
+        primary
+      >
         {submitContent}
       </Button>
     </ButtonGroup>
