@@ -58,7 +58,7 @@ const MyComponent = () => {
 
 ### [FormCard](https://github.com/istreamlabs/pebble-formik/blob/main/src/FormCard.tsx)
 
-FormCard was designed to be an all-in-one form wrapper, including a prompt message if the user tries to navigate away from the form and a submit and reset button in the footer.
+FormCard was designed to be an all-in-one form wrapper with a submit and reset button in the footer. It includes a prompt message if the user tries to navigate away from.
 
 ### [FormGroup](https://github.com/istreamlabs/pebble-formik/blob/main/src/FormGroup.tsx)
 
