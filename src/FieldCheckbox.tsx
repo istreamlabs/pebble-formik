@@ -15,20 +15,22 @@ import React from 'react';
  * @param {Function} param.setFieldValue - Formik form setFieldValue function
  * @returns {Function} - The onChange handler function passed to FieldCheckbox
  */
-export const generateOnChangeHandler = ({
-  name,
-  setFieldValue,
-  onChange: userOnChange,
-}: {
-  name: string;
-  setFieldValue: Function;
-  onChange?: Function;
-}) => (value: unknown): void => {
-  setFieldValue(name, value);
-  if (userOnChange) {
-    userOnChange(value);
-  }
-};
+export const generateOnChangeHandler =
+  ({
+    name,
+    setFieldValue,
+    onChange: userOnChange,
+  }: {
+    name: string;
+    setFieldValue: Function;
+    onChange?: Function;
+  }) =>
+  (value: unknown): void => {
+    setFieldValue(name, value);
+    if (userOnChange) {
+      userOnChange(value);
+    }
+  };
 
 /**
  * @description Render prop generator function consumed and invoked within FieldCheckboxAdapter
@@ -44,17 +46,18 @@ export const generateOnChangeHandler = ({
  * @param {string} param.value - The current field value associated with the checkbox
  * @returns {Function} - Renderprop function that conforms to the Formik Field's interface
  */
-export const generateFieldCheckboxRenderProp = ({
-  className,
-  disabled,
-  helpText,
-  hideLabel,
-  label,
-  onChange,
-  required,
-  toggle,
-  value,
-}: FieldCheckboxAdapterOptions) =>
+export const generateFieldCheckboxRenderProp =
+  ({
+    className,
+    disabled,
+    helpText,
+    hideLabel,
+    label,
+    onChange,
+    required,
+    toggle,
+    value,
+  }: FieldCheckboxAdapterOptions) =>
   /**
    * Disabling the line below because of an existing bug with eslint
    * that interprets the function below as a stateless/functional component

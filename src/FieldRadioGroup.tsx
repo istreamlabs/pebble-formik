@@ -14,25 +14,23 @@ import { InputOptions } from './types';
  * @param {bool} param.required - If the selection is required
  * @returns {Function} - The onChange handler function passed to FieldRadioGroup
  */
-export const generateOnChangeHandler = ({
-  name,
-  setFieldValue,
-}: {
-  name: string;
-  setFieldValue: Function;
-}) => (value: unknown): void => setFieldValue(name, value);
+export const generateOnChangeHandler =
+  ({ name, setFieldValue }: { name: string; setFieldValue: Function }) =>
+  (value: unknown): void =>
+    setFieldValue(name, value);
 
 /**
  * @description Render prop generator function consumed and invoked within FieldRadioGroupAdapter
  */
-export const generateFieldRadioGroupRenderProp = ({
-  className,
-  helpText,
-  name,
-  radios,
-  required,
-  title,
-}: FieldRadioGroupAdapterOptions) =>
+export const generateFieldRadioGroupRenderProp =
+  ({
+    className,
+    helpText,
+    name,
+    radios,
+    required,
+    title,
+  }: FieldRadioGroupAdapterOptions) =>
   // Disabling the line below because of an existing bug with eslint
   // that interprets the function below as a stateless/functional component
   // therefore erring because propTypes are not defined
@@ -40,17 +38,17 @@ export const generateFieldRadioGroupRenderProp = ({
 
   // eslint-disable-next-line
   ({ field: { value }, form: { setFieldValue } }: FieldProps) => (
-    <FieldRadioGroup
-      className={className}
-      helpText={helpText}
-      name={name}
-      onChange={generateOnChangeHandler({ name, setFieldValue })}
-      radios={radios}
-      required={required}
-      title={title}
-      value={value}
-    />
-  );
+      <FieldRadioGroup
+        className={className}
+        helpText={helpText}
+        name={name}
+        onChange={generateOnChangeHandler({ name, setFieldValue })}
+        radios={radios}
+        required={required}
+        title={title}
+        value={value}
+      />
+    );
 
 /**
  * @description This component serves as an adapter between the Formik Field component and the underlying
