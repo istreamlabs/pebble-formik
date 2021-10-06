@@ -12,33 +12,34 @@ import { isTouched } from './Utils';
  *
  * @returns {Function} - Renderprop function that conforms to the Formik Field's interface
  */
-export const generateFieldTextRenderProp = ({
-  autoFocus,
-  className,
-  clearBtnFunc,
-  disabled,
-  helpText,
-  hideLabel,
-  id,
-  ignoreSpellCheck,
-  isReadOnly,
-  label,
-  max,
-  maxLength,
-  min,
-  minLength,
-  multiple,
-  onChange: userOnChange,
-  onFocus,
-  pattern,
-  placeholder,
-  prefix,
-  required,
-  size,
-  suffix,
-  type,
-  width,
-}: FieldTextOptions) =>
+export const generateFieldTextRenderProp =
+  ({
+    autoFocus,
+    className,
+    clearBtnFunc,
+    disabled,
+    helpText,
+    hideLabel,
+    id,
+    ignoreSpellCheck,
+    isReadOnly,
+    label,
+    max,
+    maxLength,
+    min,
+    minLength,
+    multiple,
+    onChange: userOnChange,
+    onFocus,
+    pattern,
+    placeholder,
+    prefix,
+    required,
+    size,
+    suffix,
+    type,
+    width,
+  }: FieldTextOptions) =>
   /**
    * Disabling the line below because of an existing bug with eslint
    * that interprets the function below as a stateless/functional component
@@ -49,48 +50,48 @@ export const generateFieldTextRenderProp = ({
 
   // eslint-disable-next-line
   ({ field: { onBlur, onChange, name, value = '' }, form: { errors, touched, submitCount = 0 } }: FieldProps) => (
-    <FieldText
-      autoFocus={autoFocus}
-      className={className}
-      clearBtnFunc={clearBtnFunc}
-      disabled={disabled}
-      helpText={helpText}
-      hideLabel={hideLabel}
-      id={id}
-      ignoreSpellCheck={ignoreSpellCheck}
-      isInvalid={
-        !!(errors[name] && (isTouched(touched, name) || submitCount > 0))
-      }
-      isReadOnly={isReadOnly}
-      label={label}
-      max={max}
-      maxLength={maxLength}
-      min={min}
-      minLength={minLength}
-      multiple={multiple}
-      name={name}
-      onBlur={onBlur}
-      onChange={
-        userOnChange
-          ? (e: React.ChangeEvent<unknown>): void => {
-              userOnChange(e);
-              onChange(e);
-            }
-          : onChange
-      }
-      onFocus={onFocus}
-      pattern={pattern}
-      placeholder={placeholder}
-      prefix={prefix}
-      required={required}
-      size={size}
-      suffix={suffix}
-      type={type}
-      validationText={errors[name]}
-      value={value}
-      width={width}
-    />
-  );
+      <FieldText
+        autoFocus={autoFocus}
+        className={className}
+        clearBtnFunc={clearBtnFunc}
+        disabled={disabled}
+        helpText={helpText}
+        hideLabel={hideLabel}
+        id={id}
+        ignoreSpellCheck={ignoreSpellCheck}
+        isInvalid={
+          !!(errors[name] && (isTouched(touched, name) || submitCount > 0))
+        }
+        isReadOnly={isReadOnly}
+        label={label}
+        max={max}
+        maxLength={maxLength}
+        min={min}
+        minLength={minLength}
+        multiple={multiple}
+        name={name}
+        onBlur={onBlur}
+        onChange={
+          userOnChange
+            ? (e: React.ChangeEvent<unknown>): void => {
+                userOnChange(e);
+                onChange(e);
+              }
+            : onChange
+        }
+        onFocus={onFocus}
+        pattern={pattern}
+        placeholder={placeholder}
+        prefix={prefix}
+        required={required}
+        size={size}
+        suffix={suffix}
+        type={type}
+        validationText={errors[name]}
+        value={value}
+        width={width}
+      />
+    );
 
 /**
  * @description This component serves as an adapter between the Formik Field component and the underlying

@@ -24,7 +24,7 @@ jobs:
           restore-keys: |
             ${{ runner.OS }}-node-
       - name: Install npm modules
-        run: npm ci
+        run: npm i
       - run: npm run test:lint
   unit-test:
     name: unit test
@@ -46,7 +46,7 @@ jobs:
           restore-keys: |
             ${{ runner.OS }}-node-
       - name: Install npm modules
-        run: npm ci
+        run: npm i
       - run: npm run test:unit
   build:
     name: Build & Bundle
@@ -68,5 +68,5 @@ jobs:
           restore-keys: |
             ${{ runner.OS }}-node-
       - name: Install npm modules
-        run: npm ci
+        run: npm i
       - run: npm run build

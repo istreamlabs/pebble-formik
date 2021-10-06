@@ -182,60 +182,62 @@ export const defaultFooterRenderProp = ({
  *
  * @returns {Function} - Renderprop function that conforms to the Formik Form's interface
  */
-export const generateFormRenderProp = ({
-  children,
-  className,
-  footerRenderProp,
-  location,
-  onReset,
-  promptMessage,
-  resetContent,
-  sectioned,
-  submitContent,
-  submitSuccessMessage,
-}: {
-  children?: JSX.Element | JSX.Element[] | string | Function;
-  className?: string;
-  footerRenderProp: Function;
-  location: { pathname: string };
-  onReset?: Function;
-  promptMessage?: string | Function | boolean;
-  resetContent?: JSX.Element | JSX.Element[] | string;
-  sectioned?: boolean;
-  submitContent?: JSX.Element | JSX.Element[] | string;
-  submitSuccessMessage?: string;
-}): Function => (formik: FormikValues): JSX.Element => {
-  const { dirty, handleReset, handleSubmit, isSubmitting } = formik;
-  return (
-    <Form onSubmit={handleSubmit} onReset={handleReset}>
-      {promptMessage && (
-        <Prompt
-          message={(loc: { pathname: string }): boolean =>
-            loc.pathname === location.pathname ||
-            (typeof promptMessage === 'function'
-              ? promptMessage(loc, location)
-              : promptMessage)
-          }
-          when={!isSubmitting && dirty}
-        />
-      )}
-      <Card
-        overflow="initial"
-        className={classNames('bg-neutral-100', className)}
-        sectioned={sectioned}
-      >
-        {typeof children === 'function' ? children(formik) : children}
-        {footerRenderProp({
-          ...formik,
-          resetContent,
-          submitContent,
-          submitSuccessMessage,
-          onReset,
-        })}
-      </Card>
-    </Form>
-  );
-};
+export const generateFormRenderProp =
+  ({
+    children,
+    className,
+    footerRenderProp,
+    location,
+    onReset,
+    promptMessage,
+    resetContent,
+    sectioned,
+    submitContent,
+    submitSuccessMessage,
+  }: {
+    children?: JSX.Element | JSX.Element[] | string | Function;
+    className?: string;
+    footerRenderProp: Function;
+    location: { pathname: string };
+    onReset?: Function;
+    promptMessage?: string | Function | boolean;
+    resetContent?: JSX.Element | JSX.Element[] | string;
+    sectioned?: boolean;
+    submitContent?: JSX.Element | JSX.Element[] | string;
+    submitSuccessMessage?: string;
+  }): Function =>
+  (formik: FormikValues): JSX.Element => {
+    const { dirty, handleReset, handleSubmit, isSubmitting } = formik;
+    return (
+      <Form onSubmit={handleSubmit} onReset={handleReset}>
+        {promptMessage && (
+          <Prompt
+            message={(loc: { pathname: string }): boolean =>
+              loc.pathname === location.pathname ||
+              (typeof promptMessage === 'function'
+                ? promptMessage(loc, location)
+                : promptMessage)
+            }
+            when={!isSubmitting && dirty}
+          />
+        )}
+        <Card
+          overflow="initial"
+          className={classNames('bg-neutral-100', className)}
+          sectioned={sectioned}
+        >
+          {typeof children === 'function' ? children(formik) : children}
+          {footerRenderProp({
+            ...formik,
+            resetContent,
+            submitContent,
+            submitSuccessMessage,
+            onReset,
+          })}
+        </Card>
+      </Form>
+    );
+  };
 
 /**
  * @description This component serves as an adapter between the Formik component and the underlying
