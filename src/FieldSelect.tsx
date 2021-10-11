@@ -39,36 +39,7 @@ export const generateOnChangeHandler =
  * @returns {Function} - Renderprop function that conforms to the Formik Field's interface
  */
 export const generateFieldSelectRenderProp =
-  ({
-    ariaLabel,
-    ariaLabelledby,
-    autoFocus,
-    className,
-    closeMenuOnSelect,
-    disabled,
-    helpText,
-    hideLabel,
-    id,
-    isClearable,
-    isReadOnly,
-    label,
-    loading,
-    loadingMessage,
-    menuIsOpen,
-    menuPlacement,
-    menuPortalTarget,
-    multiSelect,
-    name,
-    noOptionsMessage,
-    onChange,
-    onFocus,
-    options,
-    placeholder,
-    required,
-    showCheckbox,
-    size,
-    width,
-  }: FieldSelectAdapterOptions) =>
+  ({ name, onChange, ...rest }: FieldSelectAdapterOptions) =>
   // Disabling the line below because of an existing bug with eslint
   // that interprets the function below as a stateless/functional component
   // therefore erring because propTypes are not defined
@@ -77,39 +48,14 @@ export const generateFieldSelectRenderProp =
   // eslint-disable-next-line
     ({ field: { onBlur, value }, form: { errors, touched, setFieldValue, submitCount = 0 } }: FieldProps) => (
       <FieldSelect
-        ariaLabel={ariaLabel}
-        ariaLabelledby={ariaLabelledby}
-        autoFocus={autoFocus}
-        className={className}
-        closeMenuOnSelect={closeMenuOnSelect}
-        disabled={disabled}
-        helpText={helpText}
-        hideLabel={hideLabel}
-        id={id}
-        isClearable={isClearable}
+        {...rest}
         isInvalid={
           !!(errors[name] && (isTouched(touched, name) || submitCount > 0))
         }
-        isReadOnly={isReadOnly}
-        label={label}
-        loading={loading}
-        loadingMessage={loadingMessage}
-        menuIsOpen={menuIsOpen}
-        menuPlacement={menuPlacement}
-        menuPortalTarget={menuPortalTarget}
-        multiSelect={multiSelect}
-        noOptionsMessage={noOptionsMessage}
         onBlur={onBlur}
         onChange={generateOnChangeHandler({ name, setFieldValue, onChange })}
-        onFocus={onFocus}
-        options={options}
-        placeholder={placeholder}
-        required={required}
-        showCheckbox={showCheckbox}
-        size={size}
         validationText={errors[name]}
         value={value}
-        width={width}
       />
     );
 
