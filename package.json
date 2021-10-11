@@ -29,14 +29,14 @@
   },
   "peerDependencies": {
     "react": "^16.0.0",
-    "@istreamplanet/pebble": "^2.9.1",
+    "@istreamplanet/pebble": "^2.11.0",
     "formik": "^2.2.6",
     "node-sass": "^4.0.0",
     "react-router-dom": "^5.2.0",
     "react-router": "^5.2.0"
   },
   "devDependencies": {
-    "@istreamplanet/pebble": "^2.9.1",
+    "@istreamplanet/pebble": "^2.11.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",

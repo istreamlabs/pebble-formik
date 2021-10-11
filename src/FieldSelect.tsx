@@ -39,36 +39,7 @@ export const generateOnChangeHandler =
  * @returns {Function} - Renderprop function that conforms to the Formik Field's interface
  */
 export const generateFieldSelectRenderProp =
-  ({
-    ariaLabel,
-    ariaLabelledby,
-    autoFocus,
-    className,
-    closeMenuOnSelect,
-    disabled,
-    helpText,
-    hideLabel,
-    id,
-    isClearable,
-    isReadOnly,
-    label,
-    loading,
-    loadingMessage,
-    menuIsOpen,
-    menuPlacement,
-    menuPortalTarget,
-    multiSelect,
-    name,
-    noOptionsMessage,
-    onChange,
-    onFocus,
-    options,
-    placeholder,
-    required,
-    showCheckbox,
-    size,
-    width,
-  }: FieldSelectAdapterOptions) =>
+  ({ name, onChange, ...rest }: FieldSelectAdapterOptions) =>
   // Disabling the line below because of an existing bug with eslint
   // that interprets the function below as a stateless/functional component
   // therefore erring because propTypes are not defined
@@ -77,39 +48,14 @@ export const generateFieldSelectRenderProp =
   // eslint-disable-next-line
     ({ field: { onBlur, value }, form: { errors, touched, setFieldValue, submitCount = 0 } }: FieldProps) => (
       <FieldSelect
-        ariaLabel={ariaLabel}
-        ariaLabelledby={ariaLabelledby}
-        autoFocus={autoFocus}
-        className={className}
-        closeMenuOnSelect={closeMenuOnSelect}
-        disabled={disabled}
-        helpText={helpText}
-        hideLabel={hideLabel}
-        id={id}
-        isClearable={isClearable}
+        {...rest}
         isInvalid={
           !!(errors[name] && (isTouched(touched, name) || submitCount > 0))
         }
-        isReadOnly={isReadOnly}
-        label={label}
-        loading={loading}
-        loadingMessage={loadingMessage}
-        menuIsOpen={menuIsOpen}
-        menuPlacement={menuPlacement}
-        menuPortalTarget={menuPortalTarget}
-        multiSelect={multiSelect}
-        noOptionsMessage={noOptionsMessage}
         onBlur={onBlur}
         onChange={generateOnChangeHandler({ name, setFieldValue, onChange })}
-        onFocus={onFocus}
-        options={options}
-        placeholder={placeholder}
-        required={required}
-        showCheckbox={showCheckbox}
-        size={size}
         validationText={errors[name]}
         value={value}
-        width={width}
       />
     );
 
@@ -119,74 +65,17 @@ export const generateFieldSelectRenderProp =
  *
  * @see https://pebble.istreamplanet.net/#/Components/FieldSelect
  */
-const FieldSelectAdapter = ({
-  ariaLabel,
-  ariaLabelledby,
-  autoFocus,
-  className,
-  closeMenuOnSelect,
-  disabled,
-  helpText,
-  hideLabel,
-  id,
-  isClearable,
-  isReadOnly,
-  label,
-  loading,
-  loadingMessage,
-  menuIsOpen,
-  menuPlacement,
-  menuPortalTarget,
-  multiSelect,
-  name,
-  noOptionsMessage,
-  onChange,
-  onFocus,
-  options,
-  placeholder,
-  required,
-  showCheckbox,
-  size,
-  type,
-  value,
-  width,
-}: FieldSelectAdapterOptions): JSX.Element => (
-  <Field name={name} type={type}>
-    {generateFieldSelectRenderProp({
-      ariaLabel,
-      ariaLabelledby,
-      autoFocus,
-      className,
-      closeMenuOnSelect,
-      disabled,
-      helpText,
-      hideLabel,
-      id,
-      isClearable,
-      isReadOnly,
-      label,
-      loading,
-      loadingMessage,
-      menuIsOpen,
-      menuPlacement,
-      menuPortalTarget,
-      multiSelect,
-      name,
-      noOptionsMessage,
-      onChange,
-      onFocus,
-      options,
-      placeholder,
-      required,
-      showCheckbox,
-      size,
-      value,
-      width,
-    })}
+const FieldSelectAdapter = (props: FieldSelectAdapterOptions): JSX.Element => (
+  <Field name={props.name} type={props.type}>
+    {generateFieldSelectRenderProp(props)}
   </Field>
 );
 
 interface FieldSelectAdapterOptions extends InputOptions {
+  /**
+   * Support loading options search results from api.
+   */
+  asyncSearch?: boolean;
   /**
    * The id attribute of the FieldSelect's container
    */
@@ -208,6 +97,13 @@ interface FieldSelectAdapterOptions extends InputOptions {
    */
   autoFocus?: boolean;
   /**
+   * If cacheOptions is truthy, then the loaded data will be cached.
+   * The cache will remain until cacheOptions changes value.
+   *
+   * Use with asyncSearch
+   */
+  cacheOptions?: boolean;
+  /**
    * Additional classes to add
    */
   className?: string;
@@ -215,6 +111,13 @@ interface FieldSelectAdapterOptions extends InputOptions {
    * Close the menu when the user selects an option when true
    */
   closeMenuOnSelect?: boolean;
+  /**
+   * The default set of options to show before the user starts searching.
+   * When set to true, the results for loadOptions('') will be auto loaded.
+   *
+   * Use with asyncSearch
+   */
+  defaultOptions?: boolean;
   /**
    * Makes select disabled and not focusable when true
    */
@@ -239,6 +142,12 @@ interface FieldSelectAdapterOptions extends InputOptions {
    * Will show the FieldSelect in a loading state when true
    */
   loading?: boolean;
+  /**
+   * Callback for array of options to populate the select menu.
+   *
+   * Use with asyncSearch.
+   */
+  loadOptions?: Function;
   /**
    * Text to display when FieldSelect is in a loading state
    */
