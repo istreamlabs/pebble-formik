@@ -46,6 +46,7 @@ export const generateFieldNumberRenderProp =
     size,
     suffix,
     width,
+    value,
   }: FieldNumberAdapterOptions) =>
   /**
    * Disabling the line below because of an existing bug with eslint
@@ -81,6 +82,7 @@ export const generateFieldNumberRenderProp =
         suffix={suffix}
         validationText={errors[name]}
         width={width}
+        value={value}
       />
     );
 
@@ -109,6 +111,7 @@ const FieldNumberAdapter = ({
   suffix,
   type,
   width,
+  value,
 }: FieldNumberAdapterOptions): JSX.Element => (
   <Field name={name} type={type}>
     {generateFieldNumberRenderProp({
@@ -129,6 +132,7 @@ const FieldNumberAdapter = ({
       size,
       suffix,
       width,
+      value,
     })}
   </Field>
 );
@@ -211,6 +215,10 @@ interface FieldNumberAdapterOptions extends InputOptions {
    * For responsive behavior, pass an array with length up to 4, with one of the above values.
    */
   width?: DimensionType;
+  /**
+   * The field value
+   */
+  value?: number;
 }
 
 // Appending display name attribute to conform to the desired name
