@@ -38,7 +38,6 @@ export const generateFieldNumberRenderProp =
     id,
     isReadOnly,
     label,
-    name,
     onFocus,
     placeholder,
     prefix,
@@ -46,7 +45,6 @@ export const generateFieldNumberRenderProp =
     size,
     suffix,
     width,
-    value,
   }: FieldNumberAdapterOptions) =>
   /**
    * Disabling the line below because of an existing bug with eslint
@@ -57,7 +55,7 @@ export const generateFieldNumberRenderProp =
    */
 
   // eslint-disable-next-line
-  ({ field: { onBlur, onChange }, form: { errors, touched, submitCount = 0 } }: FieldProps) => (
+  ({ field: { onBlur, onChange, name, value= '' }, form: { errors, touched, submitCount = 0 } }: FieldProps) => (
       <FieldNumber
         autoFocus={autoFocus}
         className={className}
