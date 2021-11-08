@@ -23,7 +23,6 @@ describe('(Component) FieldNumber', () => {
       size: 'medium',
       suffix: 'someSuffix',
       width: 100,
-      value: 123,
       ...p
     };
     return renderRTL(
@@ -41,11 +40,10 @@ describe('(Component) FieldNumber', () => {
   beforeEach(jest.clearAllMocks);
 
   it('passes props as expected', () => {
-    const { getByPlaceholderText, getByLabelText, container } = render();
+    const { getByPlaceholderText, getByLabelText } = render();
 
     expect(getByLabelText('barlabel')).toBeInTheDocument();
     expect(getByPlaceholderText('barph')).toBeInTheDocument();
-    expect(container.querySelector('input')?.value).toBe("123");
   });
 
   it('will call handlers on events', () => {
