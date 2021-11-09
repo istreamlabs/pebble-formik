@@ -14,22 +14,20 @@ import { isTouched } from './Utils';
  * @param {Function} param.setFieldValue - Formik form method that imperatively sets the field value
  * @returns {Function} - The onChange handler passed to the FieldDateTime pebble component
  */
-export const generateOnChangeHandler =
-  ({
-    name,
-    setFieldValue,
-    onChange: userOnChange,
-  }: {
-    name: string;
-    setFieldValue: Function;
-    onChange?: Function;
-  }) =>
-  (value: unknown): void => {
-    setFieldValue(name, value);
-    if (userOnChange) {
-      userOnChange(value);
-    }
-  };
+export const generateOnChangeHandler = ({
+  name,
+  setFieldValue,
+  onChange: userOnChange,
+}: {
+  name: string;
+  setFieldValue: Function;
+  onChange?: Function;
+}) => (value: unknown): void => {
+  setFieldValue(name, value);
+  if (userOnChange) {
+    userOnChange(value);
+  }
+};
 
 /**
  * @description Render prop generator function consumed and invoked within FieldSelectAdapter
@@ -38,8 +36,11 @@ export const generateOnChangeHandler =
  *
  * @returns {Function} - Renderprop function that conforms to the Formik Field's interface
  */
-export const generateFieldSelectRenderProp =
-  ({ name, onChange, ...rest }: FieldSelectAdapterOptions) =>
+export const generateFieldSelectRenderProp = ({
+  name,
+  onChange,
+  ...rest
+}: FieldSelectAdapterOptions) =>
   // Disabling the line below because of an existing bug with eslint
   // that interprets the function below as a stateless/functional component
   // therefore erring because propTypes are not defined
@@ -47,17 +48,17 @@ export const generateFieldSelectRenderProp =
 
   // eslint-disable-next-line
     ({ field: { onBlur, value }, form: { errors, touched, setFieldValue, submitCount = 0 } }: FieldProps) => (
-      <FieldSelect
-        {...rest}
-        isInvalid={
-          !!(errors[name] && (isTouched(touched, name) || submitCount > 0))
-        }
-        onBlur={onBlur}
-        onChange={generateOnChangeHandler({ name, setFieldValue, onChange })}
-        validationText={errors[name]}
-        value={value}
-      />
-    );
+    <FieldSelect
+      {...rest}
+      isInvalid={
+        !!(errors[name] && (isTouched(touched, name) || submitCount > 0))
+      }
+      onBlur={onBlur}
+      onChange={generateOnChangeHandler({ name, setFieldValue, onChange })}
+      validationText={errors[name]}
+      value={value}
+    />
+  );
 
 /**
  * @description Adapter component that connects the Formik Field component with

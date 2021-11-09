@@ -27,25 +27,24 @@ import { isTouched } from './Utils';
  * @param {string|number|Array} param.width - Valid css width, see prop-type comment block below for more
  * @returns {Function} - The render prop function passed to the Field component as a child
  */
-export const generateFieldNumberRenderProp =
-  ({
-    autoFocus,
-    className,
-    clearBtnFunc,
-    disabled,
-    helpText,
-    hideLabel,
-    id,
-    isReadOnly,
-    label,
-    onFocus,
-    placeholder,
-    prefix,
-    required,
-    size,
-    suffix,
-    width,
-  }: FieldNumberAdapterOptions) =>
+export const generateFieldNumberRenderProp = ({
+  autoFocus,
+  className,
+  clearBtnFunc,
+  disabled,
+  helpText,
+  hideLabel,
+  id,
+  isReadOnly,
+  label,
+  onFocus,
+  placeholder,
+  prefix,
+  required,
+  size,
+  suffix,
+  width,
+}: FieldNumberAdapterOptions) =>
   /**
    * Disabling the line below because of an existing bug with eslint
    * that interprets the function below as a stateless/functional component
@@ -56,33 +55,33 @@ export const generateFieldNumberRenderProp =
 
   // eslint-disable-next-line
   ({ field: { onBlur, onChange, name, value= '' }, form: { errors, touched, submitCount = 0 } }: FieldProps) => (
-      <FieldNumber
-        autoFocus={autoFocus}
-        className={className}
-        clearBtnFunc={clearBtnFunc}
-        disabled={disabled}
-        helpText={helpText}
-        hideLabel={hideLabel}
-        id={id}
-        isInvalid={
-          !!(errors[name] && (isTouched(touched, name) || submitCount > 0))
-        }
-        isReadOnly={isReadOnly}
-        label={label}
-        name={name}
-        onBlur={onBlur}
-        onChange={onChange}
-        onFocus={onFocus}
-        placeholder={placeholder}
-        prefix={prefix}
-        required={required}
-        size={size}
-        suffix={suffix}
-        validationText={errors[name]}
-        width={width}
-        value={value}
-      />
-    );
+    <FieldNumber
+      autoFocus={autoFocus}
+      className={className}
+      clearBtnFunc={clearBtnFunc}
+      disabled={disabled}
+      helpText={helpText}
+      hideLabel={hideLabel}
+      id={id}
+      isInvalid={
+        !!(errors[name] && (isTouched(touched, name) || submitCount > 0))
+      }
+      isReadOnly={isReadOnly}
+      label={label}
+      name={name}
+      onBlur={onBlur}
+      onChange={onChange}
+      onFocus={onFocus}
+      placeholder={placeholder}
+      prefix={prefix}
+      required={required}
+      size={size}
+      suffix={suffix}
+      validationText={errors[name]}
+      width={width}
+      value={value}
+    />
+  );
 
 /**
  * @description This component serves as an adapter between the Formik Field component and the underlying

@@ -17,22 +17,20 @@ import { isTouched } from './Utils';
  * @param {Function} param.setFieldValue - Formik form method that imperatively sets the field value
  * @returns {Function} - The onChange handler passed to the FieldDateTime pebble component
  */
-export const generateOnDebounceHandler =
-  ({
-    name,
-    setFieldValue,
-    onDebounce,
-  }: {
-    name: string;
-    setFieldValue: Function;
-    onDebounce?: Function;
-  }) =>
-  (value: unknown): void => {
-    setFieldValue(name, value);
-    if (onDebounce) {
-      onDebounce(value);
-    }
-  };
+export const generateOnDebounceHandler = ({
+  name,
+  setFieldValue,
+  onDebounce,
+}: {
+  name: string;
+  setFieldValue: Function;
+  onDebounce?: Function;
+}) => (value: unknown): void => {
+  setFieldValue(name, value);
+  if (onDebounce) {
+    onDebounce(value);
+  }
+};
 
 /**
  * @description Render prop generator function consumed and invoked within FieldTextAdapter
@@ -41,35 +39,34 @@ export const generateOnDebounceHandler =
  *
  * @returns {Function} - Renderprop function that conforms to the Formik Field's interface
  */
-export const generateFieldTextDebounceRenderProp =
-  ({
-    autoFocus,
-    className,
-    clearBtnFunc,
-    disabled,
-    helpText,
-    hideLabel,
-    id,
-    ignoreSpellCheck,
-    isReadOnly,
-    label,
-    max,
-    maxLength,
-    min,
-    minimumCharacters,
-    minLength,
-    multiple,
-    onDebounce,
-    onFocus,
-    pattern,
-    placeholder,
-    prefix,
-    required,
-    size,
-    suffix,
-    type,
-    width,
-  }: FieldTextDebounceOptions) =>
+export const generateFieldTextDebounceRenderProp = ({
+  autoFocus,
+  className,
+  clearBtnFunc,
+  disabled,
+  helpText,
+  hideLabel,
+  id,
+  ignoreSpellCheck,
+  isReadOnly,
+  label,
+  max,
+  maxLength,
+  min,
+  minimumCharacters,
+  minLength,
+  multiple,
+  onDebounce,
+  onFocus,
+  pattern,
+  placeholder,
+  prefix,
+  required,
+  size,
+  suffix,
+  type,
+  width,
+}: FieldTextDebounceOptions) =>
   /**
    * Disabling the line below because of an existing bug with eslint
    * that interprets the function below as a stateless/functional component
@@ -79,46 +76,46 @@ export const generateFieldTextDebounceRenderProp =
    */
   // eslint-disable-next-line
   ({ field: { onBlur, name, value }, form: { errors, setFieldValue, touched, submitCount = 0 } }: FieldProps) => (
-      <FieldTextDebounce
-        autoFocus={autoFocus}
-        className={className}
-        clearBtnFunc={clearBtnFunc}
-        disabled={disabled}
-        helpText={helpText}
-        hideLabel={hideLabel}
-        id={id}
-        ignoreSpellCheck={ignoreSpellCheck}
-        isInvalid={
-          !!((isTouched(touched, name) || submitCount > 0) && errors[name])
-        }
-        isReadOnly={isReadOnly}
-        label={label}
-        max={max}
-        maxLength={maxLength}
-        min={min}
-        minimumCharacters={minimumCharacters}
-        minLength={minLength}
-        multiple={multiple}
-        name={name}
-        onBlur={onBlur}
-        onDebounce={generateOnDebounceHandler({
-          name,
-          setFieldValue,
-          onDebounce,
-        })}
-        onFocus={onFocus}
-        pattern={pattern}
-        placeholder={placeholder}
-        prefix={prefix}
-        required={required}
-        size={size}
-        suffix={suffix}
-        type={type}
-        validationText={errors[name]}
-        value={value}
-        width={width}
-      />
-    );
+    <FieldTextDebounce
+      autoFocus={autoFocus}
+      className={className}
+      clearBtnFunc={clearBtnFunc}
+      disabled={disabled}
+      helpText={helpText}
+      hideLabel={hideLabel}
+      id={id}
+      ignoreSpellCheck={ignoreSpellCheck}
+      isInvalid={
+        !!((isTouched(touched, name) || submitCount > 0) && errors[name])
+      }
+      isReadOnly={isReadOnly}
+      label={label}
+      max={max}
+      maxLength={maxLength}
+      min={min}
+      minimumCharacters={minimumCharacters}
+      minLength={minLength}
+      multiple={multiple}
+      name={name}
+      onBlur={onBlur}
+      onDebounce={generateOnDebounceHandler({
+        name,
+        setFieldValue,
+        onDebounce,
+      })}
+      onFocus={onFocus}
+      pattern={pattern}
+      placeholder={placeholder}
+      prefix={prefix}
+      required={required}
+      size={size}
+      suffix={suffix}
+      type={type}
+      validationText={errors[name]}
+      value={value}
+      width={width}
+    />
+  );
 
 const FieldTextDebounceAdapter = ({
   autoFocus,

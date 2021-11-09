@@ -16,22 +16,20 @@ import { isTouched } from './Utils';
  * @param {Function} param.setFieldValue - Formik form method that imperatively sets the field value
  * @returns {Function} - The onChange handler passed to the FieldDateTime pebble component
  */
-export const generateOnChangeHandler =
-  ({
-    name,
-    setFieldValue,
-    onChange: userOnChange,
-  }: {
-    name: string;
-    setFieldValue: Function;
-    onChange?: Function;
-  }) =>
-  (value: unknown): void => {
-    if (userOnChange) {
-      userOnChange(value);
-    }
-    setFieldValue(name, value);
-  };
+export const generateOnChangeHandler = ({
+  name,
+  setFieldValue,
+  onChange: userOnChange,
+}: {
+  name: string;
+  setFieldValue: Function;
+  onChange?: Function;
+}) => (value: unknown): void => {
+  if (userOnChange) {
+    userOnChange(value);
+  }
+  setFieldValue(name, value);
+};
 
 /**
  * @description Higher order function that generates the render prop consumed by
@@ -39,33 +37,32 @@ export const generateOnChangeHandler =
  *
  * Documentation for the functions params match the prop-type comments below
  */
-export const generateFieldDateTimeRenderProp =
-  ({
-    autoFocus,
-    className,
-    dateFormat,
-    disabled,
-    excludeTime,
-    filterDate,
-    helpText,
-    hideLabel,
-    id,
-    isClearable,
-    label,
-    maxDate,
-    maxTime,
-    minDate,
-    minTime,
-    onChange,
-    placeholderText,
-    popperPlacement,
-    required,
-    selectLocalDateTime,
-    size,
-    timeFormat,
-    width,
-    withPortal,
-  }: FieldDateTimeAdapterOptions) =>
+export const generateFieldDateTimeRenderProp = ({
+  autoFocus,
+  className,
+  dateFormat,
+  disabled,
+  excludeTime,
+  filterDate,
+  helpText,
+  hideLabel,
+  id,
+  isClearable,
+  label,
+  maxDate,
+  maxTime,
+  minDate,
+  minTime,
+  onChange,
+  placeholderText,
+  popperPlacement,
+  required,
+  selectLocalDateTime,
+  size,
+  timeFormat,
+  width,
+  withPortal,
+}: FieldDateTimeAdapterOptions) =>
   // Disabling the line below because of an existing bug with eslint
   // that interprets the function below as a stateless/functional component
   // therefore erring because propTypes are not defined
@@ -73,42 +70,42 @@ export const generateFieldDateTimeRenderProp =
 
   // eslint-disable-next-line
     ({ field: { name, value }, form: { setFieldValue, errors, touched, submitCount = 0 } }: FieldProps) => (
-      <FieldDateTime
-        autofocus={autoFocus}
-        className={className}
-        dateFormat={dateFormat}
-        disabled={disabled}
-        excludeTime={excludeTime}
-        filterDate={filterDate}
-        helpText={helpText}
-        hideLabel={hideLabel}
-        id={id}
-        isClearable={isClearable}
-        isInvalid={
-          !!(errors[name] && (isTouched(touched, name) || submitCount > 0))
-        }
-        label={label}
-        maxDate={maxDate}
-        maxTime={maxTime}
-        minDate={minDate}
-        minTime={minTime}
-        onChange={generateOnChangeHandler({ name, setFieldValue, onChange })}
-        placeholderText={placeholderText}
-        popperPlacement={popperPlacement}
-        required={required}
-        selectLocalDateTime={selectLocalDateTime}
-        size={size}
-        timeFormat={timeFormat}
-        validationText={
-          (isTouched(touched, name) || submitCount > 0) && errors[name]
-            ? errors[name]
-            : null
-        }
-        value={value}
-        width={width}
-        withPortal={withPortal}
-      />
-    );
+    <FieldDateTime
+      autofocus={autoFocus}
+      className={className}
+      dateFormat={dateFormat}
+      disabled={disabled}
+      excludeTime={excludeTime}
+      filterDate={filterDate}
+      helpText={helpText}
+      hideLabel={hideLabel}
+      id={id}
+      isClearable={isClearable}
+      isInvalid={
+        !!(errors[name] && (isTouched(touched, name) || submitCount > 0))
+      }
+      label={label}
+      maxDate={maxDate}
+      maxTime={maxTime}
+      minDate={minDate}
+      minTime={minTime}
+      onChange={generateOnChangeHandler({ name, setFieldValue, onChange })}
+      placeholderText={placeholderText}
+      popperPlacement={popperPlacement}
+      required={required}
+      selectLocalDateTime={selectLocalDateTime}
+      size={size}
+      timeFormat={timeFormat}
+      validationText={
+        (isTouched(touched, name) || submitCount > 0) && errors[name]
+          ? errors[name]
+          : null
+      }
+      value={value}
+      width={width}
+      withPortal={withPortal}
+    />
+  );
 
 /**
  * @description This component serves as an adapter between the Formik Field component and

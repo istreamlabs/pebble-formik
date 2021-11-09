@@ -14,51 +14,48 @@ import { isTouched } from './Utils';
  * @param {string} groupName - The group name that identifies which checkboxes are within a group
  * @returns {Function} - The onChange handler passed to the FieldCheckbox component
  */
-export const generateFieldOnChangeHandler =
-  ({
-    name,
-    field,
-    value,
-    form,
-    groupName,
-  }: {
-    name: string;
-    field: { value: string[] };
-    value: string;
-    form: {
-      setFieldValue: Function;
-      setFieldTouched: Function;
-    };
-    groupName: string;
-  }) =>
-  (): void => {
-    if (field.value.includes(value)) {
-      const nextValue = field.value.filter((nValue) => nValue !== value);
-      form.setFieldValue(name, nextValue);
-      form.setFieldTouched(groupName, true, false);
-    } else {
-      const nextValue = field.value.concat(value);
-      form.setFieldValue(name, nextValue);
-      form.setFieldTouched(groupName, true, false);
-    }
+export const generateFieldOnChangeHandler = ({
+  name,
+  field,
+  value,
+  form,
+  groupName,
+}: {
+  name: string;
+  field: { value: string[] };
+  value: string;
+  form: {
+    setFieldValue: Function;
+    setFieldTouched: Function;
   };
+  groupName: string;
+}) => (): void => {
+  if (field.value.includes(value)) {
+    const nextValue = field.value.filter((nValue) => nValue !== value);
+    form.setFieldValue(name, nextValue);
+    form.setFieldTouched(groupName, true, false);
+  } else {
+    const nextValue = field.value.concat(value);
+    form.setFieldValue(name, nextValue);
+    form.setFieldTouched(groupName, true, false);
+  }
+};
 
 /**
  * @description Render prop generator function consumed and invoked within FieldCheckboxInAGroup
  */
-export const generateFieldCheckboxRenderProp =
-  ({
-    className,
-    disabled,
-    helpText,
-    id,
-    label,
-    toggle,
-    groupName,
-    name,
-    required,
-    value,
-  }: FieldCheckboxInAGroupOptions) =>
+export const generateFieldCheckboxRenderProp = ({
+  className,
+  disabled,
+  helpText,
+  id,
+  label,
+  toggle,
+  groupName,
+  name,
+  required,
+  value,
+}: FieldCheckboxInAGroupOptions) =>
   // Disabling the block below because of an existing bug with eslint
   // that interprets the function below as a stateless/functional component
   // therefore erring because propTypes are not defined
