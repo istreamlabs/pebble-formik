@@ -1,6 +1,6 @@
 {
   "name": "@istreamplanet/pebble-formik",
-  "version": "1.2.2",
+  "version": "1.4.0",
   "description": "Adapts the Pebble Design System to Formik Controls",
   "private": false,
   "author": "iStreamPlanet",
@@ -13,7 +13,8 @@
   "module": "dist/index.modern.js",
   "source": "src/index.tsx",
   "engines": {
-    "node": ">=10"
+    "node": ">=16",
+    "npm": ">=8"
   },
   "scripts": {
     "build": "microbundle-crl --no-compress --format modern,cjs",
@@ -28,10 +29,10 @@
     "postversion": "git push --follow-tags"
   },
   "peerDependencies": {
-    "react": "^16.0.0",
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
     "@istreamplanet/pebble": "^2.11.0",
     "formik": "^2.2.6",
-    "node-sass": "^4.0.0",
     "react-router-dom": "^5.2.0",
     "react-router": "^5.2.0"
   },
@@ -50,7 +51,6 @@
     "@typescript-eslint/parser": "^2.26.0",
     "babel-eslint": "^10.0.3",
     "cross-env": "^7.0.2",
-    "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.7.0",
     "eslint-config-standard": "^14.1.0",
     "eslint-config-standard-react": "^9.2.0",
@@ -63,14 +63,13 @@
     "formik": "^2.2.6",
     "gh-pages": "^2.2.0",
     "microbundle-crl": "^0.13.10",
-    "node-sass": "^4.0.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.1",
-    "typescript": "^4.2.4"
+    "typescript": "3.9.9"
   },
   "files": [
     "dist"

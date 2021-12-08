@@ -14,15 +14,8 @@ jobs:
       - name: Install NodeJS
         uses: actions/setup-node@v2
         with:
-          node-version: '14.15.x'
+          node-version: '16'
           registry-url: 'https://registry.npmjs.org'
-      - name: Cache npm modules
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.OS }}-node-
       - name: Install npm modules
         run: npm i
       - name: Publish to NPM
