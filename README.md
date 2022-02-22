@@ -1,5 +1,11 @@
 [![NPM](https://img.shields.io/npm/v/pebble-formik.svg)](https://www.npmjs.com/package/@istreamplanet/pebble-formik)
 
+# Deprecation Notice
+
+This package has been deprecated and is no longer maintained
+
+---
+
 # Pebble-Formik
 
 [Pebble](https://pebble.istreamplanet.net/) form components wrapped in a [Formik](https://formik.org/docs/overview)-friendly wrapper.
